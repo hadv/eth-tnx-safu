@@ -21,7 +21,7 @@ interface SafeTxInput {
  * @param txInput Safe transaction parameters
  * @returns Promise<string> The calculated safeTxHash
  */
-async function calculateSafeTxHash(txInput: SafeTxInput): Promise<string> {
+export async function calculateSafeTxHash(txInput: SafeTxInput): Promise<string> {
   try {
     // Validate inputs
     if (!ethers.utils.isAddress(txInput.to)) {
@@ -41,11 +41,13 @@ async function calculateSafeTxHash(txInput: SafeTxInput): Promise<string> {
     }
 
     // Prepare typed data for EIP-712 hashing
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const domain = {
       chainId: txInput.chainId,
       verifyingContract: txInput.safeAddress
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const message = {
       to: txInput.to,
       value: txInput.value,

@@ -1,0 +1,50 @@
+name: CI
+
+# Trigger the workflow on push or pull request to the main branch
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Define jobs to run
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # Use the latest Ubuntu runner
+
+    steps:
+      # Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # Use a stable Node.js version (adjust as needed)
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+            path: ~/.npm
+            key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-npm-          
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Compile TypeScript (checks for type errors)
+      - name: Compile TypeScript
+        run: npx tsc --noEmit # --noEmit checks types without generating output
+
+      # Run the script (optional: verify it executes)
+      - name: Run script
+        run: npx ts-node main.ts
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test   
