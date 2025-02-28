@@ -1,0 +1,20 @@
+{
+  "name": "eth-tnx-safu",
+  "version": "1.0.0",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node main.ts"
+  },
+  "keywords": ["safu", "eth", "transaction", "safe", "web3"],
+  "author": "Lesse Viet",
+  "license": "MIT",
+  "description": "A safe and secure Ethereum transaction handler using Web3 and ethers.js.",
+  "dependencies": {
+    "ethers": "^5.8.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
