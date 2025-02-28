@@ -1,3 +1,5 @@
+![Build Status](https://github.com/hadv/eth-tnx-safu/actions/workflows/ci.yml/badge.svg)
+
 # eth-tnx-safu
 
 A safe and secure Ethereum transaction handler using Web3 and ethers.js.
